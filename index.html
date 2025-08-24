@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TaskSpin - Task Management with a Spin</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <h1 class="app-title">TaskSpin</h1>
+            <div class="date-display" id="dateDisplay"></div>
+            <button class="settings-btn" id="settingsBtn" aria-label="Settings">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="12" cy="12" r="3"></circle>
+                    <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+                </svg>
+            </button>
+        </header>
+
+        <!-- Timer Section -->
+        <section class="timer-section">
+            <div class="timer-display">
+                <div class="timer-label">Next Reset In:</div>
+                <div class="timer" id="timer">00:00:00</div>
+                <div class="timer-status" id="timerStatus">Daily Reset</div>
+            </div>
+        </section>
+
+        <!-- Task Input -->
+        <section class="task-input-section">
+            <div class="task-input-container">
+                <input type="text" id="taskInput" placeholder="Add a new task..." class="task-input">
+                <button id="addTaskBtn" class="add-task-btn">Add</button>
+            </div>
+        </section>
+
+        <!-- Spin the Wheel Section -->
+        <section class="wheel-section">
+            <button id="spinWheelBtn" class="spin-wheel-btn">
+                <span class="wheel-icon">🎯</span>
+                <span class="wheel-text">Spin the Wheel</span>
+            </button>
+            <div id="wheelResult" class="wheel-result"></div>
+        </section>
+
+        <!-- Task List -->
+        <section class="task-list-section">
+            <h2 class="section-title">Your Tasks</h2>
+            <div id="taskList" class="task-list">
+                <!-- Tasks will be dynamically added here -->
+            </div>
+        </section>
+
+        <!-- Settings Modal -->
+        <div id="settingsModal" class="modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2>Settings</h2>
+                    <button id="closeSettingsBtn" class="close-btn">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <div class="setting-group">
+                        <label class="setting-label">Theme</label>
+                        <div class="theme-toggle">
+                            <button id="lightModeBtn" class="theme-btn active">Light</button>
+                            <button id="darkModeBtn" class="theme-btn">Dark</button>
+                        </div>
+                    </div>
+                    
+                    <div class="setting-group">
+                        <label class="setting-label">Reset Interval</label>
+                        <select id="resetInterval" class="setting-select">
+                            <option value="daily">Daily (Midnight)</option>
+                            <option value="6h">Every 6 Hours</option>
+                            <option value="12h">Every 12 Hours</option>
+                            <option value="custom">Custom Hours</option>
+                        </select>
+                        <div id="customHoursContainer" class="custom-hours-container" style="display: none;">
+                            <input type="number" id="customHours" class="setting-input" placeholder="Enter hours" min="1" max="168">
+                        </div>
+                    </div>
+                    
+                    <div class="setting-group">
+                        <label class="setting-label">Wheel Animation Speed</label>
+                        <input type="range" id="wheelSpeed" class="setting-range" min="500" max="3000" value="1500">
+                        <span id="wheelSpeedValue" class="setting-value">1.5s</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Reset Notification -->
+        <div id="resetNotification" class="reset-notification">
+            <div class="reset-content">
+                <span class="reset-icon">🔄</span>
+                <span class="reset-text">Tasks have been reset!</span>
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
